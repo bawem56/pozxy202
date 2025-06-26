@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Fire Hack Panel</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      width: 340px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    button {
+      padding: 10px 25px;
+      border: none;
+      background-color: #00c6ff;
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0072ff;
+    }
+
+    .feature {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+      background: rgba(255,255,255,0.07);
+      padding: 10px 15px;
+      border-radius: 12px;
+      align-items: center;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #aaa;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px; width: 18px;
+      left: 4px; bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #4CAF50;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+
+    .panel {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="loginBox">
+    <h2>กรอก PIN เข้าระบบโปร</h2>
+    <input type="password" id="pin" placeholder="PIN...">
+    <button onclick="enter()">เข้าสู่ระบบ</button>
+  </div>
+
+  <div class="container panel" id="panelBox">
+    <h2>🎮 Free Fire Hack Panel</h2>
+
+    <div class="feature">
+      <span>ล็อกหัว 99%</span>
+      <label class="switch">
+        <input type="checkbox" onchange="toggle('ล็อกหัว')">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="feature">
+      <span>มองทะลุ</span>
+      <label class="switch">
+        <input type="checkbox" onchange="toggle('มองทะลุ')">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="feature">
+      <span>ยิงทะลุกำแพง</span>
+      <label class="switch">
+        <input type="checkbox" onchange="toggle('ยิงทะลุ')">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="feature">
+      <span>ปั้มเพชร 💎</span>
+      <label class="switch">
+        <input type="checkbox" onchange="toggle('ปั้มเพชร')">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="feature">
+      <span>บินได้</span>
+      <label class="switch">
+        <input type="checkbox" onchange="toggle('บินได้')">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <p id="status" style="margin-top: 20px;"></p>
+  </div>
+
+  <script>
+    const correctPIN = "9999"; // เปลี่ยน PIN ได้ตรงนี้
+
+    function enter() {
+      const pin = document.getElementById("pin").value;
+      if (pin === correctPIN) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("panelBox").style.display = "block";
+      } else {
+        alert("PIN ไม่ถูกต้อง!");
+      }
+    }
+
+    function toggle(feature) {
+      const status = document.getElementById("status");
+      status.innerText = `✅ ${feature} เปิดใช้งานแล้ว`;
+      setTimeout(() => {
+        status.innerText = "";
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
