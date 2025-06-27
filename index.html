@@ -1,192 +1,552 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Free Fire Hack Panel</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Free Fire Hack Panel</title>
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
 
-    .container {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      width: 340px;
-      text-align: center;
-    }
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #000000);
+    color: #ffdd00;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+  }
 
+  .container {
+    background: linear-gradient(145deg, #222200, #4a4400);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    box-shadow:
+      0 0 0.5rem #ffdd00,
+      0 0 1.25rem #ffdd00 inset,
+      0 0 1.875rem #ffaa00 inset;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 0.125rem solid #ffdd00;
+    transition: box-shadow 0.3s ease-in-out;
+    overflow: hidden;
+  }
+
+  .container:hover {
+    box-shadow:
+      0 0 0.9375rem #ffd500,
+      0 0 2.5rem #ffdd00 inset,
+      0 0 3.75rem #ffaa00 inset;
+  }
+
+  h2 {
+    margin-bottom: 1.25rem;
+    text-shadow: 0 0 0.625rem #ffdd00;
+    font-weight: 900;
+    letter-spacing: 0.125rem;
+    font-size: 1.75rem;
+  }
+
+  input[type="password"] {
+    padding: 0.75rem;
+    width: 100%;
+    border: 0.125rem solid #ffdd00;
+    border-radius: 0.625rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    background: #222200;
+    color: #ffdd00;
+    font-weight: 700;
+    box-shadow: 0 0 0.5rem #ffdd00 inset;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="password"]:focus {
+    outline: none;
+    border-color: #ffaa00;
+    box-shadow: 0 0 0.75rem #ffaa00 inset;
+    background: #2b2b00;
+  }
+
+  button, .toggle-style-button {
+    padding: 0.75rem 1.875rem;
+    border: none;
+    background: linear-gradient(90deg, #ffaa00, #ffdd00);
+    border-radius: 0.625rem;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-shadow: 0 0 0.3125rem #000;
+    box-shadow: 0 0 0.625rem #ffdd00;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    margin: 0.3125rem 0;
+    user-select: none;
+  }
+
+  button:hover, .toggle-style-button:hover {
+    background: linear-gradient(90deg, #ffdd00, #ffaa00);
+    box-shadow: 0 0 1.25rem #ffaa00, 0 0 1.875rem #ffdd00;
+  }
+
+  #status {
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #ffaa00;
+    text-shadow: 0 0 0.75rem #ffaa00;
+    min-height: 1.5rem;
+    transition: opacity 0.3s ease;
+  }
+
+  /* FPS control */
+  .fps-control {
+    margin: 1.5rem 0 0.625rem 0;
+    text-align: left;
+    color: #ffdd00;
+    font-weight: 700;
+    text-shadow: 0 0 0.3125rem #ffaa00;
+    user-select: none;
+    font-size: 1rem;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 0.625rem;
+    background: #333300;
+    border-radius: 0.3125rem;
+    outline: none;
+    box-shadow: inset 0 0 0.625rem #ffdd00;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3125rem;
+    transition: background 0.3s ease;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #ffaa00;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 0.75rem #ffaa00;
+    border: 0.125rem solid #000;
+    transition: background 0.3s ease;
+    margin-top: -0.4375rem;
+  }
+
+  input[type="range"]:hover::-webkit-slider-thumb {
+    background: #ffdd00;
+    box-shadow: 0 0 1.125rem #ffdd00;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #ffaa00;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 0.75rem #ffaa00;
+    border: 0.125rem solid #000;
+    transition: background 0.3s ease;
+  }
+
+  input[type="range"]:hover::-moz-range-thumb {
+    background: #ffdd00;
+    box-shadow: 0 0 1.125rem #ffdd00;
+  }
+
+  #fpsValue {
+    font-size: 1rem;
+    color: #ffaa00;
+    text-shadow: 0 0 0.5rem #ffaa00;
+    font-weight: 900;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  /* Promo box */
+  .promo {
+    background: linear-gradient(90deg, #ffdd00, #ffaa00);
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    color: #000;
+    font-weight: 900;
+    font-size: 0.85rem;
+    line-height: 1.25rem;
+    box-shadow: 0 0 1rem #ffdd00;
+    margin-top: 1.25rem;
+    max-height: 8.125rem;
+    overflow-y: auto;
+    text-align: left;
+    user-select: none;
+  }
+
+  .promo::-webkit-scrollbar {
+    width: 0.375rem;
+  }
+
+  .promo::-webkit-scrollbar-track {
+    background: #333300;
+    border-radius: 0.1875rem;
+  }
+
+  .promo::-webkit-scrollbar-thumb {
+    background: #ffaa00;
+    border-radius: 0.1875rem;
+    box-shadow: 0 0 0.375rem #ffaa00;
+  }
+
+  /* Feature switch container */
+  .feature {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.9375rem 0;
+    background: #222200;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    align-items: center;
+    border: 0.09375rem solid #ffdd00;
+    box-shadow: 0 0 0.625rem #ffdd00 inset;
+    font-weight: 700;
+    letter-spacing: 0.05rem;
+    color: #ffdd00;
+    text-shadow: 0 0 0.3125rem #ffaa00;
+    transition: background 0.3s ease;
+  }
+
+  .feature:hover {
+    background: #333300;
+    box-shadow: 0 0 0.9375rem #ffaa00 inset;
+  }
+
+  /* Toggle style buttons container */
+  .style-selector {
+    margin-bottom: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* Android style toggle switch */
+  .android-switch {
+    position: relative;
+    display: inline-block;
+    width: 3.125rem; /* 50px */
+    height: 1.625rem; /* 26px */
+  }
+
+  .android-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .android-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #555500;
+    transition: 0.4s;
+    border-radius: 2.125rem; /* 34px */
+    box-shadow: inset 0 0 0.3125rem #333300;
+  }
+
+  .android-slider:before {
+    position: absolute;
+    content: "";
+    height: 1.125rem; /* 18px */
+    width: 1.125rem; /* 18px */
+    left: 0.25rem; /* 4px */
+    bottom: 0.25rem;
+    background-color: #ffdd00;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 0 0.5rem #ffdd00;
+  }
+
+  .android-switch input:checked + .android-slider {
+    background-color: #ffaa00;
+    box-shadow: 0 0 0.75rem #ffaa00;
+  }
+
+  .android-switch input:checked + .android-slider:before {
+    transform: translateX(1.5rem); /* 24px */
+    background-color: #000;
+    box-shadow: 0 0 0.625rem #ffdd00;
+  }
+
+  /* iOS style toggle switch */
+  .ios-switch {
+    position: relative;
+    display: inline-block;
+    width: 3.125rem; /* 50px */
+    height: 1.875rem; /* 30px */
+  }
+
+  .ios-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .ios-slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #555500;
+    border-radius: 2.125rem;
+    top: 0; left: 0; right: 0; bottom: 0;
+    transition: background-color 0.4s;
+    box-shadow: inset 0 0 0.3125rem #333300;
+  }
+
+  .ios-slider:before {
+    position: absolute;
+    content: "";
+    height: 1.375rem; /* 22px */
+    width: 1.375rem; /* 22px */
+    left: 0.25rem;
+    bottom: 0.25rem;
+    background-color: #ffdd00;
+    border-radius: 50%;
+    box-shadow: 0 0 0.5rem #ffdd00;
+    transition: transform 0.4s;
+  }
+
+  .ios-switch input:checked + .ios-slider {
+    background-color: #ffaa00;
+    box-shadow: 0 0 0.75rem #ffaa00;
+  }
+
+  .ios-switch input:checked + .ios-slider:before {
+    transform: translateX(1.25rem); /* 20px */
+    background-color: #000;
+    box-shadow: 0 0 0.625rem #ffdd00;
+  }
+
+  /* Responsive text sizes for small screens */
+  @media (max-width: 400px) {
     h2 {
-      margin-bottom: 20px;
+      font-size: 1.5rem;
+      letter-spacing: 0.1rem;
+    }
+
+    button, .toggle-style-button {
+      font-size: 1rem;
+      padding: 0.6rem 1.5rem;
     }
 
     input[type="password"] {
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      text-align: center;
       font-size: 1rem;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
+      padding: 0.6rem;
     }
 
-    button {
-      padding: 10px 25px;
-      border: none;
-      background-color: #00c6ff;
-      border-radius: 10px;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
+    .promo {
+      font-size: 0.75rem;
+      max-height: 6rem;
     }
 
-    button:hover {
-      background-color: #0072ff;
+    .fps-control {
+      font-size: 0.9rem;
     }
+  }
 
-    .feature {
-      display: flex;
-      justify-content: space-between;
-      margin: 15px 0;
-      background: rgba(255,255,255,0.07);
-      padding: 10px 15px;
-      border-radius: 12px;
-      align-items: center;
-    }
+  /* Launch Game Button */
+  #launchBtn {
+    margin-top: 1rem;
+    width: 100%;
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 0.9rem 0;
+    background: linear-gradient(90deg, #ffdd00, #ffaa00);
+    color: #000;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 0 1rem #ffdd00;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    text-shadow: 0 0 0.375rem #000;
+    user-select: none;
+  }
 
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 50px;
-      height: 26px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #aaa;
-      transition: 0.4s;
-      border-radius: 34px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px; width: 18px;
-      left: 4px; bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: #4CAF50;
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(24px);
-    }
-
-    .panel {
-      display: none;
-    }
-  </style>
+  #launchBtn:hover {
+    background: linear-gradient(90deg, #ffaa00, #ffdd00);
+    box-shadow: 0 0 1.75rem #ffaa00, 0 0 2.25rem #ffdd00;
+  }
+</style>
 </head>
 <body>
 
   <div class="container" id="loginBox">
-    <h2>กรอก PIN เข้าระบบโปร</h2>
-    <input type="password" id="pin" placeholder="PIN...">
-    <button onclick="enter()">เข้าสู่ระบบ</button>
+    <h2>Enter PIN to Access</h2>
+    <input type="password" id="pin" placeholder="PIN..." />
+    <button onclick="enter()">Login</button>
   </div>
 
-  <div class="container panel" id="panelBox">
-    <h2>🎮 Free Fire Hack Panel</h2>
+  <div class="container panel" id="panelBox" style="display:none;">
+    <div class="style-selector">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <label style="font-weight:700; color:#ffdd00; user-select:none;">Android Style:</label>
+        <button class="toggle-style-button" onclick="setToggleStyle('android')">Android</button>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <label style="font-weight:700; color:#ffdd00; user-select:none;">iOS Style:</label>
+        <button class="toggle-style-button" onclick="setToggleStyle('ios')">iOS</button>
+      </div>
+    </div>
+
+    <h2>Free Fire Hack Panel</h2>
 
     <div class="feature">
-      <span>ล็อกหัว 99%</span>
-      <label class="switch">
-        <input type="checkbox" onchange="toggle('ล็อกหัว')">
-        <span class="slider"></span>
+      <span>Headlock 99%</span>
+      <label class="switch android-switch">
+        <input type="checkbox" onchange="toggle('Headlock 99%')" />
+        <span class="android-slider"></span>
       </label>
     </div>
 
     <div class="feature">
-      <span>มองทะลุ</span>
-      <label class="switch">
-        <input type="checkbox" onchange="toggle('มองทะลุ')">
-        <span class="slider"></span>
+      <span>Wall Vision</span>
+      <label class="switch android-switch">
+        <input type="checkbox" onchange="toggle('Wall Vision')" />
+        <span class="android-slider"></span>
       </label>
     </div>
 
     <div class="feature">
-      <span>ยิงทะลุกำแพง</span>
-      <label class="switch">
-        <input type="checkbox" onchange="toggle('ยิงทะลุ')">
-        <span class="slider"></span>
+      <span>Wall Penetration</span>
+      <label class="switch android-switch">
+        <input type="checkbox" onchange="toggle('Wall Penetration')" />
+        <span class="android-slider"></span>
       </label>
     </div>
 
     <div class="feature">
-      <span>ปั้มเพชร 💎</span>
-      <label class="switch">
-        <input type="checkbox" onchange="toggle('ปั้มเพชร')">
-        <span class="slider"></span>
+      <span>Diamond Farming</span>
+      <label class="switch android-switch">
+        <input type="checkbox" onchange="toggle('Diamond Farming')" />
+        <span class="android-slider"></span>
       </label>
     </div>
 
     <div class="feature">
-      <span>บินได้</span>
-      <label class="switch">
-        <input type="checkbox" onchange="toggle('บินได้')">
-        <span class="slider"></span>
+      <span>Flying</span>
+      <label class="switch android-switch">
+        <input type="checkbox" onchange="toggle('Flying')" />
+        <span class="android-slider"></span>
       </label>
     </div>
 
-    <p id="status" style="margin-top: 20px;"></p>
+    <div class="fps-control">
+      <label for="fpsRange">Adjust Mobile FPS: <span id="fpsValue">60</span> FPS</label>
+      <input
+        type="range"
+        id="fpsRange"
+        min="15"
+        max="144"
+        value="60"
+        step="1"
+        oninput="updateFPS(this.value)"
+      />
+    </div>
+
+    <!-- Launch Game Button -->
+    <button id="launchBtn" onclick="launchGame()">Launch Game</button>
+
+    <p id="status" aria-live="polite" role="status"></p>
+
+    <div class="promo" id="promoText" aria-label="Promotional Text">
+      <p>Ultimate performance boost! Up to 144 FPS supported.</p>
+      <p>Headlock 99% - Kill with precision.</p>
+      <p>See through walls effortlessly.</p>
+      <p>Penetrate walls to eliminate enemies.</p>
+      <p>Unlimited diamond farming - fill your inventory.</p>
+      <p>Fly anywhere with no limits or lags.</p>
+      <p>Advanced ban protection for long-lasting play.</p>
+      <p>Optimize FPS to make your mobile run as smooth as PC.</p>
+      <p>Speed up with customizable FPS settings.</p>
+      <p>Compatible with all devices and OS versions.</p>
+      <p>Latest updates always ready for you.</p>
+      <p>Easy login with PIN, get started instantly.</p>
+      <p>Guaranteed maximum coolness and power.</p>
+      <p>Fully customizable and user friendly.</p>
+      <p>24/7 support to keep you winning.</p>
+      <p>Don't miss out! This is the real deal.</p>
+    </div>
   </div>
 
-  <script>
-    const correctPIN = "9999"; // เปลี่ยน PIN ได้ตรงนี้
+<script>
+  const correctPIN = "9999";
 
-    function enter() {
-      const pin = document.getElementById("pin").value;
-      if (pin === correctPIN) {
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("panelBox").style.display = "block";
-      } else {
-        alert("PIN ไม่ถูกต้อง!");
+  function enter() {
+    const pin = document.getElementById("pin").value.trim();
+    if (pin === correctPIN) {
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("panelBox").style.display = "block";
+      setToggleStyle('android'); // default style
+    } else {
+      alert("Incorrect PIN!");
+    }
+  }
+
+  function toggle(feature) {
+    const status = document.getElementById("status");
+    status.innerText = `${feature} enabled`;
+    clearTimeout(window.statusTimeout);
+    window.statusTimeout = setTimeout(() => {
+      status.innerText = "";
+    }, 2000);
+  }
+
+  function updateFPS(val) {
+    document.getElementById("fpsValue").innerText = val;
+    const status = document.getElementById("status");
+    status.innerText = `FPS set to ${val} for optimal mobile smoothness`;
+    clearTimeout(window.statusTimeout);
+    window.statusTimeout = setTimeout(() => {
+      status.innerText = "";
+    }, 2500);
+  }
+
+  function setToggleStyle(style) {
+    const features = document.querySelectorAll(".feature");
+    features.forEach(feature => {
+      const label = feature.querySelector("label.switch");
+      const span = label.querySelector("span");
+
+      if (style === 'android') {
+        label.className = "switch android-switch";
+        span.className = "android-slider";
+      } else if (style === 'ios') {
+        label.className = "switch ios-switch";
+        span.className = "ios-slider";
       }
-    }
+    });
+  }
 
-    function toggle(feature) {
-      const status = document.getElementById("status");
-      status.innerText = `✅ ${feature} เปิดใช้งานแล้ว`;
-      setTimeout(() => {
-        status.innerText = "";
-      }, 2000);
-    }
-  </script>
+  function launchGame() {
+    const status = document.getElementById("status");
+    status.innerText = "Launching game...";
+    clearTimeout(window.statusTimeout);
+    window.statusTimeout = setTimeout(() => {
+      status.innerText = "";
+    }, 3000);
+
+    // เพิ่มตรงนี้ถ้าจะทำให้กดแล้วทำอย่างอื่นได้ เช่น
+    // window.location.href = "game-launch-url.html";
+  }
+</script>
 
 </body>
 </html>
